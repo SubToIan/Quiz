@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = en>
+<head>
+    <meta charset = "UTF-8">
+    <meta name = 'viewport' content = "width=device-width, initial-scale = 1.0">
+    <title>Admin Panel</title>
+    <link rel = 'stylesheet' href ="{{ url_for('static', filename = 'style.css')}}">
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <div id = "quiz-list">
+        {% for quiz in questions %}
+        <div class = "quiz-item" id = "quiz-{{ quiz.id }}">
+            <span>{{ quiz.question }}</span>
+            <button onclick = "editQuiz({{ quiz.id }})">Edit</button>
+            <button onclick = "deleteQuiz({{ quiz.id }})">Delete</button>
+        </div>
+        {% endfor %}
+    </div>
+    <div id = "quiz-form">
+        <h2>Add/Edit Quiz</h2>
+        <form id = "form" onsubmit = "saveQuiz(event)">
+            <input type = "hidden" id = "quiz-id">
+            <input type = "text" id = "quiz-question" placeholder = "Question" required>
+            <input type = "text" id = "quiz-choice1" placeholder = "Choice 1" required>
+            <input type = "text" id = "quiz-choice2" placeholder = "Choice 2" required>
+            <input type = "text" id = "quiz-choice3" placeholder = "Choice 3" required>
+            <input type = "text" id = "quiz-choice4" placeholder = "Choice 4" required>
+            <input type = "text" id = "quiz-answer" placeholder = "Answer" required>
+            <button typr  = "submit">Save</button>
+        </form>
+    </div>
+    <script src = "{{url_for('static', filename = 'admin.js')}}"></script>
+</body>
+</html>
+            
